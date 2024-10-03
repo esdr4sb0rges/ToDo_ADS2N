@@ -1,0 +1,94 @@
+{% block content %}
+<style>
+    body{ 
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         font-family:Arial, Helvetica, sans-serif;
+         font-size: x-large;
+         background-image: url("https://www.performancelab.com.br/wp-content/uploads/2023/07/1688587015684.png");
+         background-position: center;
+         background-size: cover;
+         position: relative;
+     }
+
+     button {
+    background-color: rgba(3, 90, 167, 0.349);
+    color: #1e3a8a;
+    padding: 12px 24px;
+    cursor: pointer; 
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    }
+    button a{
+        color: #00013bc5;
+        text-decoration: none;
+        font-size:x-large;
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    button:hover{
+    background-color: #0307dbd7;
+    border-color: rgba(0, 0, 0, 0.164);
+    border-spacing: 3px;
+    transform: scale(1.1);}
+ 
+     h1{
+         color: hsla(239, 96%, 9%, 0.8);
+         font-style: normal;
+         text-shadow:2px 2px 4px rgba(0, 0, 0, 0.5);
+         margin-bottom: 20px;
+         cursor: pointer;
+         transition: background-color 0.3s ease, transform 0.3s ease;
+         
+     }
+     h1:hover{
+       border-spacing: 3px;
+       transform: scale(1.005);
+     }
+     p{
+        color: rgb(21, 0, 48);
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+     }
+     li {
+            background-color: #013e5a57;
+            font-family:Arial, Helvetica, sans-serif;
+            font-variant-position:inherit;
+            font-style: italic;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(69, 0, 71, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;}
+     li:hover{
+        color: #001824;
+        transition: 0.3s;
+        transform: scale(1.1);
+        text-shadow:2px 2px 4px rgba(0, 0, 0, 0.5);
+     }
+      ul a{
+        text-decoration: none;
+            color: #012547;
+            font-weight: bold;
+            display: block; 
+      }
+ </style>
+
+    <h1>LISTA DE TAREFAS</h1>
+    <button type="button"><a href="{% url 'nova' %}">NOVA TAREFA</a></button>
+    <ul>
+        {% if tarefas %}
+        {% for tarefa in tarefas %}
+        <a href="{% url 'deletar' tarefa.pk %}">
+            <li>{{ tarefa.nome_tarefa }}</li>
+        </a>
+        {% endfor %}
+        {% else %}
+            <p>Nenhum tarefa encontrada.</p>        
+        {% endif %}
+    </ul>
+{% endblock %}
+</html>
